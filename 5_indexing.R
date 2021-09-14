@@ -118,8 +118,71 @@ x_less_than25 = x[x < 25]
 # Q: Does this make any sense?
 x + x_less_than25
 
+# Q: What's the opposite of being less than 25?
+x >= 25
 
+# Exclamation point ! pronounced "NOT"
+!lessthan25
+
+# Boolean logic
+############################################################
+# Come to office hours for a more thorough discussion
+
+# ! NOT
+# & AND
+# | OR
+# xor EXCLUSIVE OR
+
+# Q: Take a minute, predict the following:
+!TRUE
+!FALSE
+
+TRUE & FALSE
+TRUE | FALSE
+
+TRUE & TRUE
+TRUE | TRUE
+
+FALSE & FALSE
+FALSE | FALSE
+
+# Q: Are logical operators vectorized?
+c(TRUE, FALSE) | c(FALSE, FALSE)
+
+# Lists
+############################################################
+
+x = list(a = c(1, 2, 3), b = sin, c = c("hi", "hello"))
+
+# Q: What are two ways to extract the first two elements of x?
+x[1:2]
+x[c("a", "b")]
+
+# Q: What kind of object is returned here?
+x[1]
+class(x[1])
+
+# Use [[ to extract elements from inside a list
+x[[1]]
+class(x[[1]])
+
+# The indexing operator [ and the extraction operator [[ both work with any
+# data structure that has elements. However, you’ll generally use the indexing
+# operator [ to index vectors, and the extraction operator [[ to index
+# containers (such as lists).
+ 
+# Data Frames
+############################################################
+
+earn = read.csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-02-23/earn.csv")
+
+# General form of data frame indexing:
+# DATA[ROWS, COLUMNS]
+
+# Q: What happens when I leave one argument blank?
+earn[1:3, ]
+
+earn[, 1]
 
 # Q: Is it better to use integers or meaningful names?
-
 
