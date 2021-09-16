@@ -9,6 +9,7 @@
 # Outcomes:
 #
 # 1. Use R's apply family of functions.
+# 2. Split data by categorical variables.
 
 earn = read.csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-02-23/earn.csv")
 
@@ -82,3 +83,23 @@ lapply(earn[, !num_cols], table)
 # 123 GO: Would this effort have been worth it if `earn` only had 2 columns?
 num_cols = sapply(earn, is.numeric)
 lapply(earn[, !num_cols], table)
+
+# The split / apply pattern
+############################################################
+
+# Suppose we want to know the median earnings by sex.
+# We could break earn into subsets by sex:
+median(earn[earn$sex == "Both Sexes", "median_weekly_earn"])
+
+# Conceptually, this is like splitting the data on a column in earn.
+# 123 GO: Which column?
+
+by_sex = split(earn$median_weekly_earn, earn$sex)
+class(by_sex)
+
+lapply(by_sex, head)
+
+lapply(by_sex, median)
+
+sapply(by_sex, median)
+
