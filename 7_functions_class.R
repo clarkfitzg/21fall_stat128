@@ -10,6 +10,8 @@
 # 3. Discord is in, MS Teams is retired.
 #   Talk through the project with each other, and with me.
 
+# 4. Advising, math minor, Stat 128 course substitution form
+
 
 # Notes: Sections 3.2 and 3.3 of text
 # https://ucdavisdatalab.github.io/workshop_r_basics/exploring-your-data.html#conditional-expressions
