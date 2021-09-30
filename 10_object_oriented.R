@@ -1,10 +1,13 @@
 
-# What do we still need to learn to write a package / finish off this project?
+# Announcements
 
-# Documenting functions
-# S3 Methods / OOP
-# ... function wrappers
-# 
+# References:
+# Introduction to R https://cran.r-project.org/doc/manuals/r-release/R-intro.html#The-three-dots-argument
+# Advanced R S3 methods: https://adv-r.hadley.nz/s3.html
+
+# Outcomes:
+# 1. Write methods for generic functions
+# 2. Write wrapper functions using ... (ellipsis)
 
 # Review of the functions we have for the SIR model:
 
@@ -36,3 +39,6 @@ summary.sir = function(x){
 
 
 summary(x)
+
+# How can I tell if a function is generic
+
