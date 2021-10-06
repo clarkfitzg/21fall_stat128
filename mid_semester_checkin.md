@@ -4,10 +4,18 @@ Announcements:
 - Done with R programming, moving on to data visualization
 - Data science career panel
 
+- Midterm possibly on Tuesday Oct 19th.
+- Weights: midterm 10%, project is 30%
+
 123 GO: How are you feeling about the "full SIR simulation" due tomorrow?
 
+123 GO:
 Would it be helpful to have another office hour on Monday or Friday?
 
+Yes- I will schedule based on Math 99 students (extra unit)
+
+
+Mid semester check in
 
 ## How you're doing
 
