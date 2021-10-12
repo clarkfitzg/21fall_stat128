@@ -1,9 +1,13 @@
 Announcements
 
 1. Midterm Tuesday, Oct 19 covering material up through this week.
+2. Revise and resubmit policy for project
 
 Problem: If your code doesn't work, then it's hard to write a report.
 Options:
+
+1. Push through it
+2. Give you code
 
 
 ## markdown demo
@@ -12,10 +16,12 @@ WYSIWYG vs. markup
 
 markup languages:
 
-123 GO: What's an advantage of markup?
+123 GO: What's an advantage of a markup language?
 
 
 ## ggplot2
+
+Notes: [datalab](https://ucdavisdatalab.github.io/workshop_r_basics/exploring-your-data.html#data-visualization)
 
 Three popular systems for creating visualizations in R:
 
@@ -23,4 +29,112 @@ The base R functions
 The lattice package
 The ggplot2 package
 
+Pick one, don't mix and match.
+
 Base R uses a "painter's canvas" model.
+
+
+```R
+n = 100
+x = rnorm(n)
+y = rnorm(n)
+plot(x, y)
+
+# 123 GO: Will the big yellow line cover the points?
+abline(h = 0, lwd = 10, col = "yellow")
+```
+
+In contrast to base R, ggplot2 uses a "declarative" model based on the grammar of graphics.
+
+The idea of a grammar of graphics is that visualizations can be built up in layers. In ggplot2, the three layers every plot must have are:
+
+- Data
+- Geometry
+- Aesthetics
+
+
+```R
+earn = read.csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-02-23/earn.csv")
+```
+
+Let’s make a line plot that shows median earnings for each quarter in 2019, with separate lines for men and women.
+
+```R
+earn19 = earn[earn$year == 2019, ]
+earn19 = earn19[earn19$race == "All Races" &
+  earn19$ethnic_origin == "All Origins" &
+    earn19$age == "16 years and over", ]
+```
+
+
+
+## Layer 1 - data
+
+ggplot and most other Tidyverse packages are designed for working with tidy data frames. Tidy means:
+
+1. Each observation has its own row.
+2. Each feature has its own column.
+3. Each value has its own cell.
+
+```R
+library(ggplot2)
+
+ggplot(earn19)
+
+```
+
+
+## Layer 2 - geometry
+
+```R
+ggplot(earn19) + geom_line()
+```
+
+
+## Layer 3 - aesthetics
+
+```R
+
+ggplot(earn19, aes(x = quarter, y = median_weekly_earn, linetype = sex)) + 
+geom_line()
+
+```
+
+If you want to set an aesthetic to a constant value, rather than one that’s data dependent, do so outside of the aesthetic layer. For instance, suppose we want to make the lines blue:
+
+```R
+ggplot(earn19, aes(x = quarter, y = median_weekly_earn, linetype = sex)) +
+  geom_line(color = "blue")
+```
+
+## Layer 4 - scales
+
+```R
+ggplot(earn19, aes(x = quarter, y = median_weekly_earn, linetype = sex)) +
+  geom_line() + labs(x = "Quarter", y = "Median Weekly Salary (USD)",
+      title = "2019 Median Weekly Salaries, by Sex", linetype = "Sex")
+```
+
+
+## Saving
+
+```R
+ggsave("line.png")
+```
+
+The Plot Device
+You can also save a plot with one of R’s “plot device” functions. The steps are:
+
+1. Call a plot device function: png, jpeg, pdf, bmp, tiff, or svg.
+1. Run your code to make the plot.
+1. Call dev.off to indicate that you’re done plotting.
+
+This strategy works with any of R’s graphics systems (not just ggplot2).
+
+Here’s an example:
+
+```R
+# Run these lines in the console, not the notebook!
+```
+
+
