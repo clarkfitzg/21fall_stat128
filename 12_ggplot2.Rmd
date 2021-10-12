@@ -1,0 +1,26 @@
+Announcements
+
+1. Midterm Tuesday, Oct 19 covering material up through this week.
+
+Problem: If your code doesn't work, then it's hard to write a report.
+Options:
+
+
+## markdown demo
+
+WYSIWYG vs. markup
+
+markup languages:
+
+123 GO: What's an advantage of markup?
+
+
+## ggplot2
+
+Three popular systems for creating visualizations in R:
+
+The base R functions
+The lattice package
+The ggplot2 package
+
+Base R uses a "painter's canvas" model.
