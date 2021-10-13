@@ -1,22 +1,107 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 Announcements
 
-1. Midterm Tuesday, Oct 19 covering material up through this week.
-2. Revise and resubmit policy for project
+1. Online Midterm Tuesday, Oct 19 covering material up through this week.
+2. Revise and resubmit policy for project - due in a week.
+
+123 GO - What's your beverage of the day?
 
 Problem: If your code doesn't work, then it's hard to write a report.
 Options:
 
-1. Push through it
-2. Give you code
+1. Push through it - could recover points on previous assignments
+2. Give you code that works - no way to recover missed points on previous assignments
+3. ~~No report, just party~~
+4. Group project - 2 people
 
 
 ## markdown demo
 
 WYSIWYG vs. markup
+"What you see is what you get"
 
-markup languages:
+markup languages - code to represent the document.
 
-123 GO: What's an advantage of a markup language?
+- HTML hypertext markup language
+- markdown
+- LaTeX
+- XML extensible markup language
+- Maybe any tech acronym that ends in ML?
+
+$$
+\LaTeX: \quad y = ax + b
+$$
+
+123 GO: What's an __advantage__ of a markup language?
+
+- more control
+- less control- true for markdown
+- generating dynamic output
+
+1. markdown is designed for simplicity.
+2. I love markdown.
+1. You should use it for your report!
+4. Can't be bothered to count.
+
+Try to knit an Rmd and see if it works.
+
+What's the relationship between Rmd (Rmarkdown) and markdown?
+
+markdown is general purpose
+Rmarkdown is R specific.
+
+`code` like that.
+
+Chunk of code to run:
+
+Inside the curly braces are chunk options.
+```{r,  echo=FALSE}
+n = 100
+n
+x = rnorm(n)
+plot(x)
+```
+
+
+Put R code inline. The value of n is `r n`.
+
+123 GO: What problem does inline code solve / prevent?
+
+It helps to make computation reproducible.
+
+# Big text
+
+### Smaller, but still a header.
+
+#### Smallest
+
+
+Example of a link: [alt (display) text](URL).
+
+Notes: [datalab](https://ucdavisdatalab.github.io/workshop_r_basics/exploring-your-data.html#data-visualization)
+
+```{r}
+head(iris)
+```
+
+Pretty it up:
+
+```{r}
+knitr::kable(head(iris))
+```
+
+Directly making a table:
+
+col1 | col2 | col3
+- | -- | ---
+a | b | 1
+c | d | 2
+
+
 
 
 ## ggplot2
