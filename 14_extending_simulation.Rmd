@@ -1,0 +1,74 @@
+---
+title: "14_extending_simulation.R"
+output: html_document
+---
+
+Announcements:
+
+1. Tuesday midterm- no need to come to class
+  Canvas quiz- open from 4:00 - 5:15.
+  You can join Zoom, I'll be on.
+2. Thursday DS career panel- DO COME via Zoom!
+  Announcement to follow- please invite others
+3. Can revise and resubmit project 1 report after Monday.
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+# Alternatively:
+# library(sir)
+source("~/projects/misc/stat128/sir.R")
+```
+
+```{r}
+nr = 15
+nc = 25
+x = matrix(0L, nrow = nr, ncol = nc)
+# who should get infected?
+# Corners!
+x[1, 1] = 1L
+x[1, nc] = 1L
+x[nr, nc] = 1L
+x[nr, 1] = 1L
+
+image(x)
+
+```
+
+Let's run some simulations!
+
+```{r}
+set.seed(1379)
+
+# Modification:
+# sir = function(x = initial_infect(nrow, ncol, p0),
+
+# Run it once:
+sir(x)
+
+# Run it a buncha times
+n = 1000
+# TODO: Experiment with p
+result = replicate(n, sir(x, p = 0.35), simplify = FALSE)
+
+# Goal is to add up all these matrices in the result.
+
+# 123 GO: Is this unnatural?
+# first pull all the x's out.
+xall = lapply(result, `[[`, "x")
+
+# Another name for lapply- Map
+# A cooler way than for loops
+
+# Adding with + works, but sum() does not work
+xall[[1]] + xall[[2]]
+
+xsum = Reduce(`+`, xall)
+
+image(t(xsum))
+```
+
