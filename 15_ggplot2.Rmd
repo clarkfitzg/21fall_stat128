@@ -1,4 +1,14 @@
 
+How was the DS panel?
+
+Which data sounds most interesting to you?
+
+1. COVID cases
+2. public financial records
+3. news [GDELT](https://www.gdeltproject.org/)
+4. census data
+
+
 ## ggplot2
 
 Notes: [datalab](https://ucdavisdatalab.github.io/workshop_r_basics/exploring-your-data.html#data-visualization)
@@ -21,7 +31,7 @@ Pick one, don't mix and match.
 Base R uses a "painter's canvas" model.
 
 
-```R
+```{r}
 n = 100
 x = rnorm(n)
 y = rnorm(n)
@@ -40,13 +50,13 @@ The idea of a grammar of graphics is that visualizations can be built up in laye
 - Aesthetics
 
 
-```R
+```{r}
 earn = read.csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-02-23/earn.csv")
 ```
 
 Let’s make a line plot that shows median earnings for each quarter in 2019, with separate lines for men and women.
 
-```R
+```{r}
 earn19 = earn[earn$year == 2019, ]
 earn19 = earn19[earn19$race == "All Races" &
   earn19$ethnic_origin == "All Origins" &
@@ -63,7 +73,9 @@ ggplot and most other Tidyverse packages are designed for working with tidy data
 2. Each feature has its own column.
 3. Each value has its own cell.
 
-```R
+If you've studied databases, this is 3rd normal form.
+
+```{r}
 library(ggplot2)
 
 ggplot(earn19)
@@ -88,39 +100,46 @@ ggplot(inf2, aes(x = shape, y = count_infected)) + geom_boxplot()
 
 ## Layer 2 - geometry
 
-```R
+```{r}
 ggplot(earn19) + geom_line()
 ```
 
 
 ## Layer 3 - aesthetics
 
-```R
-
+```{r}
 ggplot(earn19, aes(x = quarter, y = median_weekly_earn, linetype = sex)) + 
 geom_line()
-
 ```
 
 If you want to set an aesthetic to a constant value, rather than one that’s data dependent, do so outside of the aesthetic layer. For instance, suppose we want to make the lines blue:
 
-```R
+```{r}
 ggplot(earn19, aes(x = quarter, y = median_weekly_earn, linetype = sex)) +
   geom_line(color = "blue")
 ```
 
 ## Layer 4 - scales
 
-```R
-ggplot(earn19, aes(x = quarter, y = median_weekly_earn, linetype = sex)) +
+```{r}
+p = ggplot(earn19, aes(x = quarter, y = median_weekly_earn, linetype = sex)) +
   geom_line() + labs(x = "Quarter", y = "Median Weekly Salary (USD)",
-      title = "2019 Median Weekly Salaries, by Sex", linetype = "Sex")
+      title = "2019 Median Weekly Salaries, by Sex", linetype = "Sex",
+      caption = "Data from Nick Ulle's R Basics"
+      )
 ```
+
+## Annotations
+
+```{r}
+p + annotate("text", x = 
+```
+
 
 
 ## Saving
 
-```R
+```{r}
 ggsave("line.png")
 ```
 
@@ -135,7 +154,7 @@ This strategy works with any of R’s graphics systems (not just ggplot2).
 
 Here’s an example:
 
-```R
+```{r}
 # Run these lines in the console, not the notebook!
 ```
 
