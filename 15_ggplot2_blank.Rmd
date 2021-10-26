@@ -1,0 +1,112 @@
+
+How was the DS panel?
+
+Which data sounds most interesting to you?
+
+1. COVID cases
+2. public financial records
+3. news [GDELT](https://www.gdeltproject.org/)
+4. census data
+
+
+## ggplot2
+
+Notes: [datalab](https://ucdavisdatalab.github.io/workshop_r_basics/exploring-your-data.html#data-visualization)
+
+Authoritative reference: [ggplot2 book](https://ggplot2-book.org/introduction.html)
+
+> "ggplot2 provides beautiful, hassle-free plots that take care of fiddly details like drawing legends. 
+> ...
+> rather than spending your time making your graph look pretty, you can instead focus on creating the graph that best reveals the message in your data."
+
+
+Three popular systems for creating visualizations in R:
+
+The base R functions
+The lattice package
+The ggplot2 package
+
+
+
+```{r}
+
+```
+
+
+
+```{r}
+earn = read.csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-02-23/earn.csv")
+```
+
+Let’s make a line plot that shows median earnings for each quarter in 2019, with separate lines for men and women.
+
+```{r}
+
+```
+
+The tidyverse way:
+
+```{r}
+
+```
+
+
+
+
+## Layer 1 - data
+
+
+```{r}
+library(ggplot2)
+
+```
+
+An example that came up for a student in the last project:
+
+```{r}
+infections = read.csv("infections.csv", row.names = 1)
+
+```
+
+
+
+## Layer 2 - geometry
+
+```{r}
+```
+
+
+## Layer 3 - aesthetics
+
+```{r}
+```
+
+
+```{r}
+```
+
+## Layer 4 - scales
+
+```{r}
+
+```
+
+## Annotations
+
+```{r}
+```
+
+
+
+## Saving
+
+```{r}
+ggsave("line.png")
+```
+
+Plot devices
+
+```{r}
+```
+
+

@@ -72,3 +72,9 @@ xsum = Reduce(`+`, xall)
 image(t(xsum))
 ```
 
+How long did the infections run for?
+```{r}
+times = sapply(result, `[[`, "time")
+hist(times)
+```
+
