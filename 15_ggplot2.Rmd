@@ -61,7 +61,27 @@ earn19 = earn[earn$year == 2019, ]
 earn19 = earn19[earn19$race == "All Races" &
   earn19$ethnic_origin == "All Origins" &
     earn19$age == "16 years and over", ]
+
+earn19 = earn[with(earn, year == 2019 &
+                    race == "All Races" &
+                    ethnic_origin == "All Origins" &
+                    age == "16 years and over"
+                ), ]
+
 ```
+
+The tidyverse way:
+
+```{r}
+library(tidyverse)
+
+earn19b = earn %>% filter(year == 2019,
+                          race == "All Races",
+                          ethnic_origin == "All Origins",
+                          age == "16 years and over"
+)
+```
+
 
 
 
@@ -123,16 +143,16 @@ ggplot(earn19, aes(x = quarter, y = median_weekly_earn, linetype = sex)) +
 
 ```{r}
 p = ggplot(earn19, aes(x = quarter, y = median_weekly_earn, linetype = sex)) +
-  geom_line() + labs(x = "Quarter", y = "Median Weekly Salary (USD)",
+  geom_line() + 
+  labs(x = "Quarter", y = "Median Weekly Salary (USD)",
       title = "2019 Median Weekly Salaries, by Sex", linetype = "Sex",
-      caption = "Data from Nick Ulle's R Basics"
-      )
+      caption = "Data from Nick Ulle's R Basics")
 ```
 
 ## Annotations
 
 ```{r}
-p + annotate("text", x = 
+p + annotate("text", x = 3, y = 1000, label = "elbow", vjust = "top")
 ```
 
 
