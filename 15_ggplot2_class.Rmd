@@ -3,11 +3,16 @@ How was the DS panel?
 
 Which data sounds most interesting to you?
 
-1. COVID cases
-2. public financial records
-3. news [GDELT](https://www.gdeltproject.org/)
-4. census data
+picking something for class:
 
+1. 1 COVID cases
+2. 4 public financial records
+3. 5 news [GDELT](https://www.gdeltproject.org/)
+4. census data (2020 ACS)
+
+Announcements:
+Project is due tomorrow
+Office hours tomorrow at 2.
 
 ## ggplot2
 
@@ -22,13 +27,19 @@ Authoritative reference: [ggplot2 book](https://ggplot2-book.org/introduction.ht
 
 Three popular systems for creating visualizations in R:
 
-The base R functions
-The lattice package
-The ggplot2 package
+The base R functions - we've used this.
+The lattice package - skipping for now
+The ggplot2 package - very popular, worth learning
 
+base R uses a "painter's canvas" model.
 
+123 GO: will the big red line "paint over" the points?
+yes
 
 ```{r}
+x = rnorm(100)
+plot(x)
+abline(h = 0, lwd = 10, col = "red")  # < a big red line
 
 ```
 
@@ -40,25 +51,62 @@ earn = read.csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/m
 
 Let’s make a line plot that shows median earnings for each quarter in 2019, with separate lines for men and women.
 
+Start with the right data.
 ```{r}
+# 1
+earn19 = earn[earn$year == 2019, ]
+earn19 = earn19[earn19$race == "All Races", ]
+earn19 = earn19[earn19$ethnic_origin == "All Origins", ]
+earn19 = earn19[earn19$age == "16 years and over", ]
+```
 
+```{r}
+# 2 with
+earn19b = earn[with(earn, year == 2019 &
+  race == "All Races" &
+  ethnic_origin == "All Origins" &
+  age == "16 years and over"), ]
 ```
 
 The tidyverse way:
-
 ```{r}
-
+# 3 dplyr filter
+library(tidyverse)
+earn19c = earn %>% filter(
+  year == 2019, 
+  race == "All Races",
+  ethnic_origin == "All Origins",
+  age == "16 years and over")
 ```
 
+ggplot2
+
+gg is for "grammar of graphics" - a declarative model of how you want the visualization to look.
+Build up the vis in layers.
+
+every plot in ggplot2 must have:
+- data
+- geometry
+- aesthetics
 
 
 
 ## Layer 1 - data
 
+ggplot (and everything else in the tidyverse) requires "tidy data".
+
+Tidy means a data frame:
+
+1. Each observation has exactly one row
+2. Each feature is a column
+3. Each value is in exactly one cell
+
+Tidy data is "3rd normal form" in Codd's relational data theory.
 
 ```{r}
 library(ggplot2)
 
+earn19
 ```
 
 An example that came up for a student in the last project:
@@ -66,34 +114,86 @@ An example that came up for a student in the last project:
 ```{r}
 infections = read.csv("infections.csv", row.names = 1)
 
+boxplot(infections$Circle.results)
+```
+Fixing this data format
+
+1. Each observation has exactly one row
+2. Each feature is a column
+3. Each value is in exactly one cell
+
+123  go
+more rows or less rows?
+
+WANT:
+
+shape   | count
+-----   | -----
+circle  | 129
+rectangle  | 84
+line  | 234
+normal  | 212
+circle  | 240
+...
+
+```{r}
+# need to pivot this table
+inf2 = pivot_longer(infections, cols = everything(),
+                    names_to = "shape",
+                    values_to = "count")
+
+ggplot(data = inf2, aes(x = shape, y = count)) + geom_boxplot()
+
+# Won't work
+#ggplot(data = infections, aes(x = shape, y = count)) + geom_boxplot()
 ```
 
-
+tbl, data frame, table, are mostly interchangable
 
 ## Layer 2 - geometry
 
 ```{r}
+ggplot(earn19) + geom_line()
 ```
 
 
 ## Layer 3 - aesthetics
 
-```{r}
-```
-
+123 go: for a line plot, is it OK for x to be repeated?
 
 ```{r}
+ggplot(earn19, aes(x = quarter, y = median_weekly_earn, linetype = sex)) + geom_line()
+
+# What if I wanted color to vary by sex, instead of linetype?
+ggplot(earn19, aes(x = quarter, y = median_weekly_earn, color = sex)) + geom_line()
 ```
+
+Suppose I want everything blue.
+
+```{r}
+ggplot(earn19, aes(x = quarter, y = median_weekly_earn, linetype = sex)) + geom_line(color = "blue")
+```
+
 
 ## Layer 4 - scales
 
 ```{r}
-
+ggplot(earn19, aes(x = quarter, y = median_weekly_earn, linetype = sex)) +
+  geom_line(color = "blue") +
+  labs(y = "median weekly earnings ($USD)", title = "Earnings by sex", 
+       caption = "Data from Nick Ulle's R Basics")
 ```
 
 ## Annotations
 
 ```{r}
+p = ggplot(earn19, aes(x = quarter, y = median_weekly_earn, linetype = sex)) +
+  geom_line(color = "blue") +
+  labs(y = "median weekly earnings ($USD)", title = "Earnings by sex", 
+       caption = "Data from Nick Ulle's R Basics")
+
+p = p + annotate("text", label = "elbow", x = 3, y = 1000, vjust = "top")
+p
 ```
 
 
