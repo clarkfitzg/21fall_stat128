@@ -1,17 +1,16 @@
-```{r}
-
 library(tidyverse)
 library(stringr)
 library(lubridate)
 
-headlines = read.csv("~/Downloads/abcnews-date-text.csv")
+download.file("https://stat196k-data-examples.s3.amazonaws.com/australia_news.zip", "headlines.zip")
+
+headlines = read.csv(unz("headlines.zip", "abcnews-date-text.csv"))
+
+dim(headlines)
 
 head(headlines)
 
-```
-
-Let's see if we can find the years when the Olympics happened.
-```{r}
+# Let's see if we can find the years when the Olympics happened.
 
 headlines$olympic = str_detect(headlines$headline_text, "olympic")
 
@@ -39,8 +38,3 @@ headlines %>%
     ggplot(., aes(x = year, y = olympic)) + 
     geom_line() +
     ylab("number of news articles mentioning Olympics")
-
-
-```
-
-
