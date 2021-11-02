@@ -1,0 +1,40 @@
+Announcements:
+
+- Women in STEM panel tomorrow, 5:30, see Canvas Discussion
+- Turn projects in 
+- Great work on projects! Plan: video highlights
+- Optionally, come to office hours this week for grade adjustment / holistic evaluation on project 1
+
+Dates:
+
+- 9 Nov project assigned
+- 1 Dec project draft due
+- 7-9 Dec (last week) project presentations (5 min each)
+- 10 Dec project final draft due
+
+Guidance for project:
+
+
+Plan:
+
+- Nov 2: Shiny 1
+- Nov 4: Shiny 2
+
+- Nov 9: Intro data / project, EDA
+- HOLIDAY
+
+- Nov 16: Practical linear modeling 1 
+- Nov 18: Practical linear modeling 2 
+
+- Nov 23: Decision Trees
+- HOLIDAY
+
+- Nov 30: Bootstrap and resampling (to estimate parameter variability)
+- Dec 2: Summarizing, writing, and presenting results
+
+- Dec 7: Presentations
+- Dec 9: Presentations
+
+
+Reference material for today:
+https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/
