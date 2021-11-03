@@ -1,19 +1,23 @@
 Announcements:
 
 - Women in STEM panel tomorrow, 5:30, see Canvas Discussion
-- Turn projects in 
+- Turn project 1 in 
 - Great work on projects! Plan: video highlights
 - Optionally, come to office hours this week for grade adjustment / holistic evaluation on project 1
 
-Dates:
+123 GO: What's your favorite Halloween candy?
+
+Dates - for project 2:
 
 - 9 Nov project assigned
-- 1 Dec project draft due
+- 1 Dec project draft due, feedback soon after
 - 7-9 Dec (last week) project presentations (5 min each)
 - 10 Dec project final draft due
+- 16 Dec Final: Thurs., Dec 16 3:00pm - 5:00pm via Zoom
 
-Guidance for project:
+Guidance for project 2:
 
+Talk to me if you want to pursue your own thing.
 
 Plan:
 
@@ -23,10 +27,10 @@ Plan:
 - Nov 9: Intro data / project, EDA
 - HOLIDAY
 
-- Nov 16: Practical linear modeling 1 
-- Nov 18: Practical linear modeling 2 
+- Nov 16: Practical linear modeling 1
+- Nov 18: Practical linear modeling 2
 
-- Nov 23: Decision Trees
+- Nov 23: Decision Trees --> leads to random forest
 - HOLIDAY
 
 - Nov 30: Bootstrap and resampling (to estimate parameter variability)
@@ -38,3 +42,12 @@ Plan:
 
 Reference material for today:
 https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/
+
+Other technologies to do dashboards:
+
+- Javascript, D3
+- React
+
+GUI based:
+
+- Tableau
