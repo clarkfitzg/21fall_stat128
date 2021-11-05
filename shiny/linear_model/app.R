@@ -2,11 +2,10 @@ library(shiny)
 
 # Goal: Linear model display
 
-# Define UI for application that draws a histogram
 ui <- fluidPage(
 
     # Application title
-    titlePanel("Linear Models"),
+    titlePanel("Linear Models - TODO"),
 
     # Want to plot and fit a linear model for simulated data:
     # y = ax + b + e
@@ -20,16 +19,14 @@ ui <- fluidPage(
     # Sidebar with a slider input for number of bins 
     sidebarLayout(
         sidebarPanel(
-            numericInput("slope", "slope", 0),
+            numericInput("slope", "slope", 1),
             numericInput("intercept", "intercept", 0),
-            numericInput("noise", "standard deviation of error", 1),
+            numericInput("noise", "standard deviation of error", 1, min = 1e-10),
             numericInput("npoints", "number of data points", 20)
         ),
 
-        # Show a plot of the generated distribution
+        # Display plot and summary
         mainPanel(
-           # camelcase: linearPlot
-           # snakecase: linear_plot
            plotOutput("linearPlot"),
            verbatimTextOutput("summary")
         )
@@ -61,7 +58,7 @@ server <- function(input, output) {
         # lm is for "linear model"
         lm(y ~ x, data = xy())
     })
-        
+    
     output$summary <- renderPrint({
         summary(model())
     })
