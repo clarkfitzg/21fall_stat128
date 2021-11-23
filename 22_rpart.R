@@ -90,6 +90,20 @@ lapply(models, avg_least_squares)
 # How can we have "new data" if we just have one data set, and the model is unknown?
 
 # Real data
+library(rpart)
+
 body = read.csv("Howell_us.csv")
 
+# Sort data so the lines work out
+body = body[order(body$age), ]
+adults = body[18 <= body$age, ]
+
+fit_rpart = rpart(height_in ~ age, body)
+fit_lm = lm(height_in ~ age, body)
+
 # What columns does it "make sense" to use as the predictors for weight?
+with(body, plot(age, height_in))
+
+lines(body$age, predict(fit_rpart), col = "blue")
+lines(body$age, predict(fit_lm), col = "red")
+
