@@ -153,6 +153,9 @@ body$height_in = body$height / 2.54
 body$weight_lb = body$weight * 2.20462
 body$sex = ifelse(body$male, "male", "female")
 
+keep = c("age", "height_in", "weight_lb", "sex")
+write.csv(body[, keep], "Howell_us.csv", row.names = FALSE)
+
 # What's going on?
 with(body, plot(height_in, weight_lb))
 

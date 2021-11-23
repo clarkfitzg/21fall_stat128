@@ -88,3 +88,8 @@ lapply(models, avg_least_squares)
 
 # This evaluation relied on having new data.
 # How can we have "new data" if we just have one data set, and the model is unknown?
+
+# Real data
+body = read.csv("Howell_us.csv")
+
+# What columns does it "make sense" to use as the predictors for weight?
