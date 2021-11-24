@@ -131,8 +131,12 @@ lines(body_train$age, predict(fit1), col = "blue", lwd = 4)
 
 fit2 = rpart(height_in ~ age + sex, data = body_train)
 
-with(body_train, plot(age, height_in))
-lines(body_train$age, predict(fit2), col = "red", lwd = 4)
+male = body_train$sex == "male"
+
+with(body_train[male, ], plot(age, height_in, col = "red"))
+lines(body_train$age[male], predict(fit2)[male], col = "red", lwd = 4)
+with(body_train[!male, ], points(age, height_in, col = "blue"))
+lines(body_train$age[!male], predict(fit2)[!male], col = "blue", lwd = 4)
 
 # * does all possible first order and interaction terms
 fit3 = lm(height_in ~ age*sex, data = body_train)
